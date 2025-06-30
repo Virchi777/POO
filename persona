@@ -1,0 +1,72 @@
+class Persona():
+    nombre=""
+    edad=0
+    dni=0
+    sexo=""
+    peso=0
+    altura=0.0
+    def __init__(self,nombre="",edad=0,dni=0,sexo="",peso=0,altura=0.0):
+        self.nombre=nombre
+        self.edad=edad
+        self.dni=dni
+        self.sexo=sexo
+        self.peso=peso
+        self.altura=altura
+    def calcularIMC(self):
+        imc=self.peso/(self.altura**2)
+        if imc<20:
+          return -1
+        elif imc<=25:
+           return 0
+        else:
+          return 1
+    def esMayordeEdad(self):
+        if self.edad>="18":
+          return True
+        else:
+           return False
+    def comprobarSexo(self,sexo):
+        if sexo==self.sexo:
+           return True
+        else:
+           return False
+    def __str__(self):
+     return f"nombre:{self.nombre},dni:{self.dni},edad:{self.edad},sexo:{self.sexo},peso:{self.peso},altura:{self.altura}"
+nombre=input("ingrese nombre: ")
+dni=input("ingrese dni: ")
+edad=int(input("ingrese edad: "))
+sexo=input("ingrese sexo: ")
+peso=float(input("ingrese peso: "))
+altura=float(input("ingrese altura: "))
+objetoP=Persona(nombre,dni,edad,sexo,peso,altura)
+while True:
+   print("1. Calcular IMC")
+   print("2. Es mayor de edad")
+   print("3. Comprobar sexo")
+   print("4. Imprimir todos los datos")
+   print("5. Salir")
+   opcion=input("ingrese la opcion deseada: ")
+   match opcion:
+      case "1":
+         imc=objetoP.calcularIMC()
+         if imc==-1:
+           print("bajo peso")
+         elif imc==0:
+           print("peso normal")
+         else:
+           print("sobrepeso")
+      case "2":
+         if objetoP.esMayordeEdad():
+            print("es mayor")
+         else:
+            print("es menor")
+      case "3":
+         sexo=input("ingrese el sexo:")
+         if objetoP.comprobarSexo(sexo):
+            print("el sexo ingresado es correcto")
+         else:
+           print("el sexo ingresado es incorrecto")
+      case "4":
+           print(objetoP.__str__())
+      case "5":
+       break
